@@ -1,0 +1,298 @@
+﻿<!DOCTYPE html>
+<html lang="ru-RU">
+<head>
+    <meta charset="UTF-8"/>
+		<title>Strong Shoes</title>
+		<link href="./css/bootstrap.css" rel='stylesheet' type='text/css' />
+		<script src="./js/jquery.min.js"></script>
+		<link href="./css/style.css" rel='stylesheet' type='text/css' />
+   		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" type="text/css" href="css/tooltipster.css" />
+		<script type="text/javascript" src="js/jquery.tooltipster.min.js"></script>
+		<style>
+		/* styles unrelated to zoom */
+		* { border:0; margin:0; padding:0; }
+		 
+
+		/* these styles are for the demo, but are not required for the plugin */
+		.zoom {
+			display:inline-block;
+			position: relative;
+		}
+		
+		/* magnifying glass icon */
+		.zoom:after {
+			content:'';
+			display:block; 
+			width:100px; 
+			height:33px; 
+			position:absolute; 
+			top:0;
+			right:0;
+			background:url(icon.png);
+			opacity:0.5
+		}
+
+		.zoom img {
+			display: block;
+		}
+
+		.zoom img::selection { background-color: transparent; }
+
+		#ex2 img:hover { cursor: url(grab.cur), default; }
+		#ex2 img:active { cursor: url(grabbed.cur), default; }
+		</style>
+		<script src='./jquery.zoom.js'></script>
+		<script>
+		$(document).ready(function(){
+		
+		  var jsonURL = "buy.json";
+		  
+		  $.getJSON(jsonURL, function (json)
+		  {
+			var imgList= "";
+			var i = 0;
+			var desc = "";
+			$.each(json.products, function () {
+			  if(this.cat=='summer'){
+				imgList = '<div class="item itemmain" id="ttipSummer'+i+'"> <div onclick="#" class="product-grid"> <a href="'+ this.imgBig+'"><div class="product-pic"> <span class="zoom" id="exSummer'+i+'"> <img src="'+ this.imgSmall+'" width="250px" title="Boots" />  </span> </div> </a><div class="product-pic-info"> <h3><a href="'+ this.imgBig+'">'+ this.title+'</a></h3> <div class="product-pic-info-price-cart"> <div class="product-pic-info-price"> <span>'+ this.number+'</span> </div> <div class="product-pic-info-cart"> <a class="p-btn" href="'+ this.link+'">Заказать</a> </div> <div class="clearfix"> </div> </div> </div> </div> </div>';
+				$('#buySummer').append(""+imgList); 
+				$('#ttipSummer'+i).tooltipster({ content: $('<span>'+this.description+'</span>') });
+				$('#exSummer'+i).zoom({magnify: this.zoom});
+			  }
+			  if(this.cat=='autumn'){
+				imgList = '<div class="item itemmain" id="ttipAutumn'+i+'"> <div onclick="#" class="product-grid"> <a href="'+ this.imgBig+'"><div class="product-pic"> <span class="zoom" id="exAutumn'+i+'"> <img src="'+ this.imgSmall+'" width="250px" title="Boots" /> </span> </div> </a><div class="product-pic-info"> <h3><a href="'+ this.imgBig+'">'+ this.title+'</a></h3> <div class="product-pic-info-price-cart"> <div class="product-pic-info-price"> <span>'+ this.number+'</span> </div> <div class="product-pic-info-cart"> <a class="p-btn" href="'+ this.link+'">Заказать</a> </div> <div class="clearfix"> </div> </div> </div> </div> </div>';
+				$('#buyAutumn').append(""+imgList); 
+				$('#ttipAutumn'+i).tooltipster({ content: $('<span>'+this.description+'</span>') });
+				$('#exAutumn'+i).zoom({magnify: this.zoom});
+			  }
+			  if(this.cat=='winter'){
+				imgList = '<div class="item itemmain" id="ttipWinter'+i+'"> <div onclick="#" class="product-grid"> <a href="'+ this.imgBig+'"><div class="product-pic"> <span class="zoom" id="exWinter'+i+'"> <img src="'+ this.imgSmall+'" width="250px" title="Boots" /> </span> </div> </a><div class="product-pic-info"> <h3><a href="'+ this.imgBig+'">'+ this.title+'</a></h3> <div class="product-pic-info-price-cart"> <div class="product-pic-info-price"> <span>'+ this.number+'</span> </div> <div class="product-pic-info-cart"> <a class="p-btn" href="'+ this.link+'">Заказать</a> </div> <div class="clearfix"> </div> </div> </div> </div> </div>';
+				$('#buyWinter').append(""+imgList); 
+				$('#ttipWinter'+i).tooltipster({ content: $('<span>'+this.description+'</span>') });
+				$('#exWinter'+i).zoom({magnify: this.zoom});
+			  }
+			  imgList = '<div class="item itemmain" id="ttipAll'+i+'"> <div onclick="#" class="product-grid"> <a href="'+ this.imgBig+'"><div class="product-pic"> <span class="zoom" id="exAll'+i+'"> <img src="'+ this.imgSmall+'" width="250px" title="Boots" /> </span> </div> </a><div class="product-pic-info"> <h3><a href="'+ this.imgBig+'">'+ this.title+'</a></h3> <div class="product-pic-info-price-cart"> <div class="product-pic-info-price"> <span>'+ this.number+'</span> </div> <div class="product-pic-info-cart"> <a class="p-btn" href="'+ this.link+'">Заказать</a> </div> <div class="clearfix"> </div> </div> </div> </div> </div>';
+			  $('#buyAll').append(""+imgList); 
+			  $('#ttipAll'+i).tooltipster({ content: $('<span>'+this.description+'</span>') });
+			  $('#exAll'+i).zoom({magnify: this.zoom});
+			  i++;
+			});
+		  });
+
+			$('#ttp1').tooltipster({
+                content: $('<span>'+ 
+				           'Модель: 100<br/>'+
+				           'Подкладка: износоустойчивый материал РИП-120<br/>'+
+				           'Метод крепления подошвы: Клеепрошивной<br/>'+
+				           'Верх: Натуральная хромовая кожа "ТУЛИП"(1,4-1,6 мм)<br/>'+
+				           'Супинатор: Металлический<br/>'+
+						   'Подносок и задник: Усиленный из термопластического материала<br/>'+
+						   'Подошва: 100-ТЭП «Эволюшен»,102-ТЭП "БРАНД"<br/>'+
+						   'Описание: Глухой клапан предохраняет ногу от воздействия окружающей среды (пыль, вода, грязь)<br/>'+
+						   'Размеры: 36-45<br/>'+
+						   '</span>')
+            });
+			$('#ttp2').tooltipster({
+                content: $('<span>'+ 
+				           'Модель: 100<br/>'+
+				           'Подкладка: износоустойчивый материал РИП-120<br/>'+
+				           'Метод крепления подошвы: Клеепрошивной<br/>'+
+				           'Верх: Натуральная хромовая кожа "ТУЛИП"(1,4-1,6 мм)<br/>'+
+				           'Супинатор: Металлический<br/>'+
+						   'Подносок и задник: Усиленный из термопластического материала<br/>'+
+						   'Подошва: 100-ТЭП «Эволюшен»,102-ТЭП "БРАНД"<br/>'+
+						   'Описание: Глухой клапан предохраняет ногу от воздействия окружающей среды (пыль, вода, грязь)<br/>'+
+						   'Размеры: 36-45<br/>'+
+						   '</span>')
+            });
+			$('#ttp3').tooltipster({
+                content: $('<span>'+ 
+				           'Модель: 100<br/>'+
+				           'Подкладка: износоустойчивый материал РИП-120<br/>'+
+				           'Метод крепления подошвы: Клеепрошивной<br/>'+
+				           'Верх: Натуральная хромовая кожа "ТУЛИП"(1,4-1,6 мм)<br/>'+
+				           'Супинатор: Металлический<br/>'+
+						   'Подносок и задник: Усиленный из термопластического материала<br/>'+
+						   'Подошва: 100-ТЭП «Эволюшен»,102-ТЭП "БРАНД"<br/>'+
+						   'Описание: Глухой клапан предохраняет ногу от воздействия окружающей среды (пыль, вода, грязь)<br/>'+
+						   'Размеры: 36-45<br/>'+
+						   '</span>')
+            });
+			$('#ttp4').tooltipster({
+                content: $('<span>'+ 
+				           'Модель: 100<br/>'+
+				           'Подкладка: износоустойчивый материал РИП-120<br/>'+
+				           'Метод крепления подошвы: Клеепрошивной<br/>'+
+				           'Верх: Натуральная хромовая кожа "ТУЛИП"(1,4-1,6 мм)<br/>'+
+				           'Супинатор: Металлический<br/>'+
+						   'Подносок и задник: Усиленный из термопластического материала<br/>'+
+						   'Подошва: 100-ТЭП «Эволюшен»,102-ТЭП "БРАНД"<br/>'+
+						   'Описание: Глухой клапан предохраняет ногу от воздействия окружающей среды (пыль, вода, грязь)<br/>'+
+						   'Размеры: 36-45<br/>'+
+						   '</span>')
+            });
+			$('#ttp5').tooltipster({
+                content: $('<span>'+ 
+				           'Модель: 100<br/>'+
+				           'Подкладка: износоустойчивый материал РИП-120<br/>'+
+				           'Метод крепления подошвы: Клеепрошивной<br/>'+
+				           'Верх: Натуральная хромовая кожа "ТУЛИП"(1,4-1,6 мм)<br/>'+
+				           'Супинатор: Металлический<br/>'+
+						   'Подносок и задник: Усиленный из термопластического материала<br/>'+
+						   'Подошва: 100-ТЭП «Эволюшен»,102-ТЭП "БРАНД"<br/>'+
+						   'Описание: Глухой клапан предохраняет ногу от воздействия окружающей среды (пыль, вода, грязь)<br/>'+
+						   'Размеры: 36-45<br/>'+
+						   '</span>')
+            });
+			$( ".all" ).show();
+			$( ".summer" ).hide();
+			$( ".autumn" ).hide();
+			$( ".winter" ).hide();
+			$( ".tt1" ).text(' (весь каталог)');
+			
+			$( "#kat0" ).click(function() {
+				$( ".summer" ).hide();
+				$( ".winter" ).hide();
+				$( ".autumn" ).hide();
+				$( ".tt1" ).text(' (весь каталог)');
+				$( ".all" ).show(200);
+			});
+			$( "#kat1" ).click(function() {
+				$( ".all" ).hide();
+				$( ".winter" ).hide();
+				$( ".autumn" ).hide();
+				$( ".tt1" ).text('для лета');
+				$( ".summer" ).show(200);
+			});
+			$( "#kat2" ).click(function() {
+				$( ".all" ).hide();
+				$( ".summer" ).hide();
+				$( ".autumn" ).hide();
+				$( ".tt1" ).text('для зимы');
+				$( ".winter" ).show(200);
+			});
+			$( "#kat3" ).click(function() {
+				$( ".all" ).hide();
+				$( ".summer" ).hide();
+				$( ".winter" ).hide();
+				$( ".tt1" ).text('для осени');
+				$( ".autumn" ).show(200);
+			});
+		});
+	</script>
+	</head>
+	<body>
+		<div class="header">
+			<div class="bottom-header">
+				<div class="container">
+					<div class="bottom-header-left">
+						
+					</div>
+					<div class="logo">
+						<a href="index.html"> <p>Надежная обувь <br/>на strong-shoes.ru</p></a>
+					</div>
+				</div>
+			</div>
+			<!-- /bottom-header -->
+		</div>
+		<!-- header -->
+		<!--- top-nav -->
+		<div class="top-nav">
+			<div class="container">
+				<span class="menu"> </span>
+				<ul>
+				    <li><a href="index.html">О компании</a></li>
+				    <li class="active"><a href="buy.html">Каталог</a></li>
+					<li><a href="contact.html">Контакты</a></li>
+					<div class="clearfix"> </div>
+				</ul>
+			</div>
+		</div>
+		<script>
+			$(document).ready(function(){
+				$("span.menu").click(function(){
+					$(".top-nav ul").slideToggle(500);
+				});
+			});
+		</script>
+		<div class="bottom-grids" style="padding:15px">
+			<div class="container">
+			    <div class="col-md-3 bottom-grids-right">
+				    <h2>Категории</h2>
+					 <br/>
+
+<div id='cssmenu'>
+<ul>
+   <li><a href='#' id='kat0'><span>Все товары</span></a></li>
+   <li><a href='#' id='kat1'><span>Лето</span></a></li>
+   <li><a href='#' id='kat3'><span>Осень</span></a></li>
+   <li><a href='#' id='kat2'><span>Зима</span></a></li>
+</ul>
+</div>
+
+
+					 <br/>
+					<h2>Понравилась обувь?</h2>
+					<p>Позвоните нам по номеру <br/>+8 (961) 825 48 34</p>
+				</div>
+				<div class="col-md-9 bottom-grids-left">
+					<div class="f-products">
+						<h2>Наши товары <span class='tt1'></span></h2>
+							<!----sreen-gallery-cursual---->
+						<div class="sreen-gallery-cursual">
+							 <!-- requried-jsfiles-for owl -->
+							   <div id="owl-demo" class="owl-carousel text-center all">
+					                <div id="buyAll"></div>
+							   </div>
+							   <div id="owl-demo" class="owl-carousel text-center summer">
+					                <div id="buySummer"></div>
+							   </div>
+						       <div id="owl-demo" class="owl-carousel text-center winter ">
+									<div id="buyWinter"></div>
+				              </div>
+							  <div id="owl-demo" class="owl-carousel text-center autumn ">
+									<div id="buyAutumn"></div>
+				              </div>
+						<!--//sreen-gallery-cursual---->
+							
+					</div>
+				</div>
+				
+				</div>
+				
+				<div class="clearfix"> </div>
+			</div>
+		</div>
+		<div class="footer">
+			<div class="container">
+				<div class="footer-grids">
+					<div class="col-md-3 footer-grid">
+						<h3>Меню</h3>
+						<ul>
+							<li><a href="buy.html">Каталог</a></li>
+							<li><a href="index.html">О компании</a></li>
+							<li><a href="contact.html">Контакты</a></li>
+						</ul>
+					</div>
+
+					<div class="col-md-6 footer-grid about-grid">
+						<h3>О компании</h3>
+						<p>Мы делаем прочную и удобную обувь на протяжении многих лет.</p>
+						<p>Наш адрес: г. Владикавказ, ул. Герасимова, 45</p>
+					</div>
+					<div class="clearfix"> </div>
+				</div>
+				<br/>
+				<div class="footer-bottom">
+					<div class="footer-bottom-left">
+						<p>(c) Strong Shoes | <a href="index.html">На главную</a></p>
+					</div>
+					<div class="clearfix"> </div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
+

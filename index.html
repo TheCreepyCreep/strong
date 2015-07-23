@@ -1,0 +1,143 @@
+﻿<!DOCTYPE html>
+<html lang="ru-RU">
+<head>
+    <meta charset="UTF-8"/>
+		<title>Strong Shoes</title>
+		<link href="./css/bootstrap.css" rel='stylesheet' type='text/css' />
+		<script src="./js/jquery.min.js"></script>
+		<link href="./css/style.css" rel='stylesheet' type='text/css' />
+		<link href="./css/owl.carousel.css" rel="stylesheet">
+   		 <meta name="viewport" content="width=device-width, initial-scale=1">
+		 <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+	</head>
+	<body>
+		<div class="header">
+			<div class="bottom-header">
+				<div class="container">
+					<div class="bottom-header-left">
+						
+					</div>
+					<div class="logo">
+						<a href="index.html"> <p>Надежная обувь <br/>на strong-shoes.ru</p></a>
+					</div>
+				</div>
+			</div>
+			<!-- /bottom-header -->
+		</div>
+		<!-- header -->
+		<!--- top-nav -->
+		<div class="top-nav">
+			<div class="container">
+				<span class="menu"> </span>
+				<ul>
+					<li class="active"><a href="index.html">О компании</a></li>
+				    <li><a href="buy.html">Каталог</a></li>
+					<li><a href="contact.html">Контакты</a></li>
+					<div class="clearfix"> </div>
+				</ul>
+			</div>
+		</div>
+		<script src="./js/owl.carousel.js"></script>
+		<script>
+			$(document).ready(function(){
+			  var jsonURL = "buy.json";
+			  $.getJSON(jsonURL, function (json)
+			  {
+				var imgList= "";
+				var i = 0;
+				var desc = "";
+				$.each(json.products, function () {
+				  imgList = '<div class="item"> <div onclick="#" class="product-grid"> <div class="product-pic"> <a href="'+ this.imgBig+'"><img src="'+ this.imgSmall+'" width="250px" height="200px" title="Boots" /></a> </div> <div class="product-pic-info"> <h3><a href="'+ this.imgBig+'">'+ this.title+'</a></h3> <div class="product-pic-info-price-cart"> <div class="product-pic-info-price"> <span>'+ this.number+'</span> </div> <div class="product-pic-info-cart"> <a class="p-btn" href="'+ this.link+'">Заказать</a> </div> <div class="clearfix"> </div> </div> </div> </div> </div>';
+				  $('.buyAll').append(""+imgList); 
+				  i++;
+				  
+				});
+				$("#owl-demo").owlCarousel({
+									        items : 4,
+									        lazyLoad : true,
+									        autoPlay : true,
+									        navigation : true,
+									        navigationText :  false,
+									        pagination : false,
+									      });
+			  });
+				
+				$("span.menu").click(function(){
+					$(".top-nav ul").slideToggle(500);
+				});
+			});
+		</script>
+		<div class="bottom-grids" style="padding:15px">
+			<div class="container">
+				<div class="col-md-12 bottom-grids-left">
+					
+				<div class="d-products f-products">
+						<h2>О компании</h2>
+							<div style="padding:5px;">
+						<p>Наше предприятие производит специальную обувь для военнослужащих Министерства Обороны, сотрудников органов внутренних дел и военнослужащих Внутренних Войск МВД, таможенных органов, бойцов МЧС, сотрудников охранных фирм и служб, воспитанников суворовских и нахимовских училищ. Охотников, туристов, геологов, старателей и любителей активного отдыха. Служащих инженерно-технических служб заводов и фабрик. Работников автосервиса, ремонтных мастерских, автозаправочных станций.</p>
+						<p>Поэтому для производства нашей спецобуви мы применяем передовые технологии и современные материалы. Наши ботинки представляют собой профессионально разработанную обувь для носки в экстремальных и боевых ситуациях. Мы стараемся, чтобы наша обувь была комфортной и многофункциональной, защищала ноги людей от механических и природных воздействий, жары, холода, агрессивной среды.</p>
+						<p>Для верха нашей обуви мы применяем натуральные кожи хромового дубления. Верх обуви обрабатываем водоотталкивающими пропитками. На облегченные модели на берцы ставим ткань Cordurа.</p>
+						<p>На подкладку используем искусственный и натуральный мех, натуральную подкладочную кожу, а также нетканые материалы Cambrelle, с высокими показателями гидроскопичности и износоустойчивости к истиранию.</p>
+						<p>Подносок и задник изготавливаются из термопластичного материала повышенной жесткости.</p>
+						<p>Вкладная стелька изготавливается из материала с повышенными гидрофобными свойствами, что позволяет ноге быть сухой.</p>
+						<p>В производстве обуви используем подошвы из термоэластопласта (ТЭПа),полиуретана(ПУ), резины.</p>
+						<p>Клеепрошивной метод крепления подошвы повышает эксплуатационные свойства обуви.</p>
+						<p>Для защиты ног от механических воздействий на обуви применен мягкий кант, голеностопный ремень и боковую защиту. Глухой клапан защищает ногу от тугой шнуровки, а также препятствует попаданию внутрь обуви мелких камней, пыли и воды.</p>
+				</div>
+				</div>
+				
+				
+				<div class="f-products">
+						<h2>Наши товары</h2>
+							<!----sreen-gallery-cursual---->
+						<div class="sreen-gallery-cursual">
+							 <!-- requried-jsfiles-for owl -->
+							        <script>
+									    $(document).ready(function() {
+									      
+									    });
+									   </script>
+							 <!-- //requried-jsfiles-for owl -->
+							 <!-- start content_slider -->
+						       <div id="owl-demo" class="owl-carousel text-center buyAll">
+				              </div>
+						<!--//sreen-gallery-cursual---->
+							
+					</div>
+				</div>
+				</div>
+				
+				<div class="clearfix"> </div>
+			</div>
+		</div>
+		<div class="footer">
+			<div class="container">
+				<div class="footer-grids">
+					<div class="col-md-3 footer-grid">
+						<h3>Меню</h3>
+						<ul>
+							<li><a href="index.html">О компании</a></li>
+							<li><a href="buy.html">Каталог</a></li>
+							<li><a href="contact.html">Контакты</a></li>
+						</ul>
+					</div>
+
+					<div class="col-md-6 footer-grid about-grid">
+						<h3>О компании</h3>
+						<p>Мы делаем прочную и удобную обувь на протяжении многих лет.</p>
+						<p>Наш адрес: г. Владикавказ, ул. Герасимова, 45</p>
+					</div>
+					<div class="clearfix"> </div>
+				</div>
+				<br/>
+				<div class="footer-bottom">
+					<div class="footer-bottom-left">
+						<p>(c) Strong Shoes | <a href="index.html">На главную</a></p>
+					</div>
+					<div class="clearfix"> </div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
+
